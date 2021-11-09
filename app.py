@@ -66,7 +66,7 @@ def load_data(median_income_in, population_in, longitude_in, latitude_in):
     dtr_clf.fit(housing_attributes, housevalues.values.ravel())
     
     
-    if median_income_in == 0 and population_in == 0 and longitude_in == 0 and latitude_in == 0:
+    if median_income_in == 0 or population_in == 0 or longitude_in == 0 or latitude_in == 0:
         predicted_home_value = 0
     else: 
         predicted_home_value = dtr_clf.predict(inputs)
