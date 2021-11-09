@@ -16,9 +16,10 @@ st.markdown("This is a demo ERIC app.")
 
 st.markdown("This app takes the population, median income, longitude and latitude and outputs a predicted house value.")
 st.markdown("The data is from a UCI repo on California housing prices that has way more than 4 variables.")
-st.markdown("For clarity's sake, I've stuck with 4 that a theoretical user can get off the internet")
-
-
+st.markdown("It uses random forest regression and grid search to fit then estimate inputs")
+st.markdown("The output is the predicted home value.")
+st.markdown("Im able to create it in Atom and Spyder but spent a lot of time getting it to work in streamlit.")
+st.markdown("Spyder, Atom, Git Desktop are working fine, I wasnt able to let the user choose their preferred model among SVR, RF, Linear")
 import warnings
 warnings.filterwarnings('ignore')
 longitude_in = -122
