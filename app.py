@@ -25,6 +25,67 @@ st.markdown("Im able to create it in Atom and Spyder but spent a lot of time get
 st.markdown("Spyder, Atom, Git Desktop are working fine, I wasnt able to let the user choose their preferred model among SVR, RF, Linear")
 
 
+
+@st.cache
+def load_data(median_income_in, population_in, longitude_in, latitude_in):
+    
+    import warnings
+    warnings.filterwarnings('ignore')
+    import pandas as pd
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from sklearn import tree, neighbors, preprocessing, linear_model, svm, naive_bayes, linear_model
+    from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
+    from sklearn.linear_model import LinearRegression
+    from sklearn.model_selection import cross_validate, train_test_split,cross_val_score
+    from sklearn.svm import SVR
+    from sklearn.tree import DecisionTreeRegressor
+    from sklearn.ensemble import RandomForestRegressor
+    from sklearn.model_selection import GridSearchCV, cross_val_score, KFold
+    from sklearn.metrics import confusion_matrix, classification_report, make_scorer, accuracy_score
+    from sklearn.preprocessing import OrdinalEncoder, LabelEncoder
+    from sklearn.preprocessing import StandardScaler
+    housing = pd.read_csv(
+        "https://raw.githubusercontent.com/EricRHolland/first-streamlit-app/main/housing.csv")
+    housing = pd.DataFrame(housing)
+    
+    
+    important_columns = ["longitude", "latitude","population","median_income"]
+    target_to_predict = ["median_house_value"]
+    newhouseframe = ["longitude", "latitude","population","median_income","median_house_value"]
+    housing = housing.dropna()
+    
+    housing = housing[newhouseframe]
+    housing_attributes = housing[important_columns]
+    # print(housing_attributes)
+    housevalues = housing[target_to_predict]
+    # print(housevalues)
+    
+    scalerX = preprocessing.StandardScaler()
+    housing_attributes = scalerX.fit_transform(housing_attributes)
+    # print(housing_attributes)
+    
+    inputs = np.array([longitude_in,latitude_in, population_in,median_income_in])
+    # print(inputs)
+    inputs = inputs.reshape(1,-1)
+    # print(inputs)
+    inputs = scalerX.transform(inputs)
+    # print(inputs)
+    
+    
+    dtr_clf = RandomForestRegressor()
+    
+    dtr_clf.fit(housing_attributes, housevalues.values.ravel())
+    # dtr_clf.best_params_
+    
+    predicted_home_value = dtr_clf.predict(inputs)
+    predicted_home_value = float(predicted_home_value)
+    return print("The expected home value is: $",predicted_home_value,".")
+
+
+
+# print("How much would the average house cost in your district in 1990? \
+#       Let's find out")
 median_income_in = st.text_input("Enter your immediate area's median income in USD with no periods or commas:")
 population_in = st.text_input("Enter your immediate area's median income in USD with no periods or commas:")
 longitude_in = st.text_input("Enter your district longitude:")
@@ -34,11 +95,12 @@ population_in = int(population_in)
 longitude_in = int(longitude_in)
 latitude_in = int(latitude_in)
 
-@st.cache
-def load_data:
-import warnings
-warnings.filterwarnings('ignore')
+data = load_data(median_income_in, population_in, longitude_in, latitude_in)  
 
+st.write(data)  
+
+
+#end
 
 
 
@@ -52,69 +114,6 @@ warnings.filterwarnings('ignore')
 # longitude_in = float(input())
 # print("Enter your district latitude:")
 # latitude_in  = float(input())
-
-print("How much would the average house cost in your district in 1990? \
-      Let's find out")
-
-
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn import tree, neighbors, preprocessing, linear_model, svm, naive_bayes, linear_model
-from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import cross_validate, train_test_split,cross_val_score
-from sklearn.svm import SVR
-from sklearn.tree import DecisionTreeRegressor
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.model_selection import GridSearchCV, cross_val_score, KFold
-from sklearn.metrics import confusion_matrix, classification_report, make_scorer, accuracy_score
-from sklearn.preprocessing import OrdinalEncoder, LabelEncoder
-from sklearn.preprocessing import StandardScaler
-housing = pd.read_csv(
-    "https://raw.githubusercontent.com/EricRHolland/first-streamlit-app/main/housing.csv")
-housing = pd.DataFrame(housing)
-
-
-important_columns = ["longitude", "latitude","population","median_income"]
-target_to_predict = ["median_house_value"]
-newhouseframe = ["longitude", "latitude","population","median_income","median_house_value"]
-housing = housing.dropna()
-
-housing = housing[newhouseframe]
-housing_attributes = housing[important_columns]
-# print(housing_attributes)
-housevalues = housing[target_to_predict]
-# print(housevalues)
-
-scalerX = preprocessing.StandardScaler()
-housing_attributes = scalerX.fit_transform(housing_attributes)
-# print(housing_attributes)
-
-inputs = np.array([longitude_in,latitude_in, population_in,median_income_in])
-# print(inputs)
-inputs = inputs.reshape(1,-1)
-# print(inputs)
-inputs = scalerX.transform(inputs)
-# print(inputs)
-
-
-dtr_clf = RandomForestRegressor()
-
-dtr_clf.fit(housing_attributes, housevalues.values.ravel())
-# dtr_clf.best_params_
-
-predicted_home_value = dtr_clf.predict(inputs)
-predicted_home_value = float(predicted_home_value)
-return print("The expected home value is: $",predicted_home_value,".")
-
-
-
-
-
-
-
-
 
 # linreg = linear_model.LinearRegression()
 # linreg = linreg.fit(housing_attributes,housevalues)
