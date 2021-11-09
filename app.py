@@ -27,10 +27,10 @@ median_income_in1 = st.number_input("Enter your immediate area's median income i
 population_in1 = st.number_input("Enter your immediate area's population (max 6000):")
 longitude_in1 = st.number_input("Enter your district longitude betweeen -120 and -140:")
 latitude_in1 = st.number_input("Enter your district latitude between 25 and 45:")
-median_income_in1 = float(median_income_in1)/10000
-population_in1 = int(population_in1)
-longitude_in1 = int(longitude_in1)
-latitude_in1 = int(latitude_in1)
+median_income_in = float(median_income_in1)/10000
+population_in = int(population_in1)
+longitude_in = int(longitude_in1)
+latitude_in = int(latitude_in1)
 
 @st.cache
 def load_data(median_income_in, population_in, longitude_in, latitude_in):
@@ -65,8 +65,12 @@ def load_data(median_income_in, population_in, longitude_in, latitude_in):
     dtr_clf = RandomForestRegressor()
     dtr_clf.fit(housing_attributes, housevalues.values.ravel())
     
-    predicted_home_value = dtr_clf.predict(inputs)
-    predicted_home_value = float(predicted_home_value)
+    
+    if median_income_in == 0 and population_in == 0 and longitude_in == 0 and latitude_in == 0:
+        predicted_home_value = 0
+    else: 
+        predicted_home_value = dtr_clf.predict(inputs)
+        predicted_home_value = float(predicted_home_value)
     return predicted_home_value
 
 
