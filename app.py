@@ -85,12 +85,8 @@ st.write(data)
 
 
 #end
-# dtr_clf_simple = RandomForestRegressor()
-# dtr_clf_simple.fit()
-# simple_input = [median_income_in]
 
-
-
+#python code that wont work in streamlit below:
 # print("Enter your immediate area's median income in USD:")
 # median_income_in = float(input())/10000
 # print("Enter how many people there in your immediate area (max 6000):")
@@ -107,8 +103,8 @@ st.write(data)
 # linreg.predict(inputs)
 
 
-
-# # CROSS VALIDATION define inner and outer loops
+# Cut cross validation and grid search for computation time
+# CROSS VALIDATION define inner and outer loops
 # inner_cv = KFold(n_splits = 4, shuffle = True, random_state=50)
 # outer_cv = KFold(n_splits = 4, shuffle = True, random_state=50)
 
