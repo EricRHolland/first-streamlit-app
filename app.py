@@ -53,29 +53,21 @@ def load_data(median_income_in, population_in, longitude_in, latitude_in):
     
     housing = housing[newhouseframe]
     housing_attributes = housing[important_columns]
-    # print(housing_attributes)
     housevalues = housing[target_to_predict]
-    # print(housevalues)
     
     scalerX = StandardScaler()
     housing_attributes = scalerX.fit_transform(housing_attributes)
-    # print(housing_attributes)
     
     inputs = np.array([longitude_in,latitude_in, population_in,median_income_in])
-    # print(inputs)
     inputs = inputs.reshape(1,-1)
-    # print(inputs)
     inputs = scalerX.transform(inputs)
-    # print(inputs)
-    
     
     dtr_clf = RandomForestRegressor()
-    
     dtr_clf.fit(housing_attributes, housevalues.values.ravel())
     
     predicted_home_value = dtr_clf.predict(inputs)
     predicted_home_value = float(predicted_home_value)
-    return print("The expected home value is: $",predicted_home_value,".")
+    return predicted_home_value
 
 
 
@@ -89,8 +81,9 @@ st.write(data)
 
 
 #end
-
-
+# dtr_clf_simple = RandomForestRegressor()
+# dtr_clf_simple.fit()
+# simple_input = [median_income_in]
 
 
 
