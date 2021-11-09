@@ -6,6 +6,11 @@ Testing1
 @author: hamzafarooq@ MABA CLASS
 """
 
+import streamlit as st
+import pandas as pd
+
+import plotly.express as px
+
 st.title("Eric Holland First Draft of App")
 st.markdown("This is a demo ERIC app.")
 
