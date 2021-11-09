@@ -26,7 +26,7 @@ st.markdown("Spyder, Atom, Git Desktop are working fine, I wasnt able to let the
 median_income_in1 = st.number_input("Enter your immediate area's median income in USD:", max_value = 500000, min_value = 0)
 population_in1 = st.number_input("Enter your immediate area's population (max 6000):", max_value = 6000, min_value = 0)
 longitude_in1 = st.number_input("Enter your district longitude betweeen -114 and -125:", min_value = -125)
-latitude_in1 = st.number_input("Enter your district latitude between 32 and 42:",mine_value = 32)
+latitude_in1 = st.number_input("Enter your district latitude between 32 and 42:",min_value = 32)
 median_income_in = float(median_income_in1)/10000
 population_in = int(population_in1)
 longitude_in = int(longitude_in1)
