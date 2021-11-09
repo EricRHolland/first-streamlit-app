@@ -7,7 +7,6 @@ Testing1
 """
 
 import streamlit as st
-import pandas as pd
 longitude_in = -122
 latitude_in = 35
 population_in = 3000
@@ -40,11 +39,7 @@ def load_data(median_income_in, population_in, longitude_in, latitude_in):
     warnings.filterwarnings('ignore')
     import pandas as pd
     import numpy as np
-    
     from sklearn.ensemble import RandomForestRegressor
-    from sklearn.model_selection import GridSearchCV, cross_val_score, KFold
-    from sklearn.metrics import confusion_matrix, classification_report, make_scorer, accuracy_score
-    from sklearn.preprocessing import OrdinalEncoder, LabelEncoder
     from sklearn.preprocessing import StandardScaler
     housing = pd.read_csv(
         "https://raw.githubusercontent.com/EricRHolland/first-streamlit-app/main/housing.csv")
