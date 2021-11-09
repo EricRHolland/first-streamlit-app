@@ -76,7 +76,6 @@ def load_data(median_income_in, population_in, longitude_in, latitude_in):
     dtr_clf = RandomForestRegressor()
     
     dtr_clf.fit(housing_attributes, housevalues.values.ravel())
-    # dtr_clf.best_params_
     
     predicted_home_value = dtr_clf.predict(inputs)
     predicted_home_value = float(predicted_home_value)
