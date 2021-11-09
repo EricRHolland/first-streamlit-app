@@ -27,15 +27,18 @@ st.markdown("Spyder, Atom, Git Desktop are working fine, I wasnt able to let the
 
 median_income_in = st.text_input("Enter your immediate area's median income in USD with no periods or commas:")
 population_in = st.text_input("Enter your immediate area's median income in USD with no periods or commas:")
-longitude_in = st.text_input("Enter your immediate area's median income in USD with no periods or commas:")
-latitude_in = st.text_input("Enter your immediate area's median income in USD with no periods or commas:")
+longitude_in = st.text_input("Enter your district longitude:")
+latitude_in = st.text_input("Enter your district latitude:")
+median_income_in = float(median_income_in)
+population_in = int(population_in)
+longitude_in = int(longitude_in)
+latitude_in = int(latitude_in)
 
+@st.cache
+def load_data:
 import warnings
 warnings.filterwarnings('ignore')
-longitude_in = -122
-latitude_in = 35
-population_in = 3000
-median_income_in = 4.5
+
 
 
 
@@ -96,6 +99,23 @@ inputs = scalerX.transform(inputs)
 # print(inputs)
 
 
+dtr_clf = RandomForestRegressor()
+
+dtr_clf.fit(housing_attributes, housevalues.values.ravel())
+# dtr_clf.best_params_
+
+predicted_home_value = dtr_clf.predict(inputs)
+predicted_home_value = float(predicted_home_value)
+return print("The expected home value is: $",predicted_home_value,".")
+
+
+
+
+
+
+
+
+
 # linreg = linear_model.LinearRegression()
 # linreg = linreg.fit(housing_attributes,housevalues)
 # linreg.score(housing_attributes,housevalues)
@@ -114,11 +134,7 @@ inputs = scalerX.transform(inputs)
 # dtr_clf = GridSearchCV(estimator=dtr, param_grid = dtr_grid, cv=inner_cv,
 #                        return_train_score = False,
 #                        refit=True)
-dtr_clf = RandomForestRegressor()
 # Run Grid search to find best estimators
-dtr_clf.fit(housing_attributes, housevalues.values.ravel())
 # dtr_clf.best_params_
 
-predicted_home_value = dtr_clf.predict(inputs)
-predicted_home_value = float(predicted_home_value)
-print("The expected home value is: $",predicted_home_value,".")
+
