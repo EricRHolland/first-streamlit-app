@@ -58,8 +58,6 @@ housing = pd.read_csv(
 housing = pd.DataFrame(housing)
 
 
-
-
 important_columns = ["longitude", "latitude","population","median_income"]
 target_to_predict = ["median_house_value"]
 newhouseframe = ["longitude", "latitude","population","median_income","median_house_value"]
@@ -67,44 +65,44 @@ housing = housing.dropna()
 
 housing = housing[newhouseframe]
 housing_attributes = housing[important_columns]
-print(housing_attributes)
+# print(housing_attributes)
 housevalues = housing[target_to_predict]
-print(housevalues)
+# print(housevalues)
 
 scalerX = preprocessing.StandardScaler()
 housing_attributes = scalerX.fit_transform(housing_attributes)
-print(housing_attributes)
+# print(housing_attributes)
 
 inputs = np.array([longitude_in,latitude_in, population_in,median_income_in])
-print(inputs)
+# print(inputs)
 inputs = inputs.reshape(1,-1)
-print(inputs)
+# print(inputs)
 inputs = scalerX.transform(inputs)
-print(inputs)
+# print(inputs)
 
 
-linreg = linear_model.LinearRegression()
-linreg = linreg.fit(housing_attributes,housevalues)
-linreg.score(housing_attributes,housevalues)
-linreg.coef_
-linreg.predict(inputs)
+# linreg = linear_model.LinearRegression()
+# linreg = linreg.fit(housing_attributes,housevalues)
+# linreg.score(housing_attributes,housevalues)
+# linreg.coef_
+# linreg.predict(inputs)
 
 
 
-# CROSS VALIDATION define inner and outer loops
-inner_cv = KFold(n_splits = 4, shuffle = True, random_state=50)
-outer_cv = KFold(n_splits = 4, shuffle = True, random_state=50)
+# # CROSS VALIDATION define inner and outer loops
+# inner_cv = KFold(n_splits = 4, shuffle = True, random_state=50)
+# outer_cv = KFold(n_splits = 4, shuffle = True, random_state=50)
 
-dtr = RandomForestRegressor()
-dtr_grid = {'max_depth': list(range(12,25))}
+# dtr = RandomForestRegressor()
+# dtr_grid = {'max_depth': list(range(12,25))}
 
-dtr_clf = GridSearchCV(estimator=dtr, param_grid = dtr_grid, cv=inner_cv,
-                       return_train_score = False,
-                       refit=True)
-
+# dtr_clf = GridSearchCV(estimator=dtr, param_grid = dtr_grid, cv=inner_cv,
+#                        return_train_score = False,
+#                        refit=True)
+dtr_clf = RandomForestRegressor()
 # Run Grid search to find best estimators
 dtr_clf.fit(housing_attributes, housevalues.values.ravel())
-dtr_clf.best_params_
+# dtr_clf.best_params_
 
 predicted_home_value = str(round(dtr_clf.predict(inputs),2))
 
