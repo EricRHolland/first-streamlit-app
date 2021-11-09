@@ -27,10 +27,10 @@ median_income_in1 = st.number_input("Enter your immediate area's median income i
 population_in1 = st.number_input("Enter your immediate area's population (max 6000):")
 longitude_in1 = st.number_input("Enter your district longitude betweeen -120 and -140:")
 latitude_in1 = st.number_input("Enter your district latitude between 25 and 45:")
-median_income_in = float(median_income_in1)/10000
-population_in = int(population_in1)
-longitude_in = int(longitude_in1)
-latitude_in = int(latitude_in1)
+median_income_in1 = float(median_income_in1)/10000
+population_in1 = int(population_in1)
+longitude_in1 = int(longitude_in1)
+latitude_in1 = int(latitude_in1)
 
 @st.cache
 def load_data(median_income_in, population_in, longitude_in, latitude_in):
