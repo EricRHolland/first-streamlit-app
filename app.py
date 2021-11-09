@@ -24,7 +24,14 @@ st.markdown("The output is the predicted home value.")
 st.markdown("Im able to create it in Atom and Spyder but spent a lot of time getting it to work in streamlit.")
 st.markdown("Spyder, Atom, Git Desktop are working fine, I wasnt able to let the user choose their preferred model among SVR, RF, Linear")
 
-
+median_income_in1 = st.number_input("Enter your immediate area's median income in USD with no periods or commas:")
+population_in1 = st.number_input("Enter your immediate area's median income in USD with no periods or commas:")
+longitude_in1 = st.number_input("Enter your district longitude:")
+latitude_in1 = st.number_input("Enter your district latitude:")
+median_income_in = float(median_income_in)/10000
+population_in = int(population_in)
+longitude_in = int(longitude_in)
+latitude_in = int(latitude_in)
 
 @st.cache
 def load_data(median_income_in, population_in, longitude_in, latitude_in):
@@ -85,14 +92,7 @@ def load_data(median_income_in, population_in, longitude_in, latitude_in):
 
 # print("How much would the average house cost in your district in 1990? \
 #       Let's find out")
-median_income_in = st.text_input("Enter your immediate area's median income in USD with no periods or commas:")
-population_in = st.text_input("Enter your immediate area's median income in USD with no periods or commas:")
-longitude_in = st.text_input("Enter your district longitude:")
-latitude_in = st.text_input("Enter your district latitude:")
-median_income_in = float(median_income_in)
-population_in = int(population_in)
-longitude_in = int(longitude_in)
-latitude_in = int(latitude_in)
+
 
 data = load_data(median_income_in, population_in, longitude_in, latitude_in)  
 
