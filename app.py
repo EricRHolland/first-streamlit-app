@@ -79,7 +79,7 @@ def load_data(median_income_in, population_in, longitude_in, latitude_in):
 #       Let's find out")
 
 
-data = load_data(median_income_in1, population_in1, longitude_in1, latitude_in1)  
+data = load_data(median_income_in, population_in, longitude_in, latitude_in)  
 st.markdown("Your estimated California Home value is: ")
 st.write(data)  
 
