@@ -8,6 +8,10 @@ Testing1
 
 import streamlit as st
 import pandas as pd
+longitude_in = -122
+latitude_in = 35
+population_in = 3000
+median_income_in = 4.5
 
 
 st.title("Eric Holland First Draft of App")
@@ -19,20 +23,32 @@ st.markdown("It uses random forest regression and grid search to fit then estima
 st.markdown("The output is the predicted home value.")
 st.markdown("Im able to create it in Atom and Spyder but spent a lot of time getting it to work in streamlit.")
 st.markdown("Spyder, Atom, Git Desktop are working fine, I wasnt able to let the user choose their preferred model among SVR, RF, Linear")
+
+
+median_income_in = st.text_input("Enter your immediate area's median income in USD with no periods or commas:")
+population_in = st.text_input("Enter your immediate area's median income in USD with no periods or commas:")
+longitude_in = st.text_input("Enter your immediate area's median income in USD with no periods or commas:")
+latitude_in = st.text_input("Enter your immediate area's median income in USD with no periods or commas:")
+
 import warnings
 warnings.filterwarnings('ignore')
 longitude_in = -122
 latitude_in = 35
 population_in = 3000
 median_income_in = 4.5
-print("Enter your immediate area's median income in USD:")
-median_income_in = float(input())/10000
-print("Enter how many people there in your immediate area (max 6000):")
-population_in = int(input())
-print("Enter your district longitude:")
-longitude_in = float(input())
-print("Enter your district latitude:")
-latitude_in  = float(input())
+
+
+
+
+
+# print("Enter your immediate area's median income in USD:")
+# median_income_in = float(input())/10000
+# print("Enter how many people there in your immediate area (max 6000):")
+# population_in = int(input())
+# print("Enter your district longitude:")
+# longitude_in = float(input())
+# print("Enter your district latitude:")
+# latitude_in  = float(input())
 
 print("How much would the average house cost in your district in 1990? \
       Let's find out")
