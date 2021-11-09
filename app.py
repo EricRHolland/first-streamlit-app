@@ -40,13 +40,7 @@ def load_data(median_income_in, population_in, longitude_in, latitude_in):
     warnings.filterwarnings('ignore')
     import pandas as pd
     import numpy as np
-    import matplotlib.pyplot as plt
-    from sklearn import tree, neighbors, preprocessing, linear_model, svm, naive_bayes, linear_model
-    from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
-    from sklearn.linear_model import LinearRegression
-    from sklearn.model_selection import cross_validate, train_test_split,cross_val_score
-    from sklearn.svm import SVR
-    from sklearn.tree import DecisionTreeRegressor
+    
     from sklearn.ensemble import RandomForestRegressor
     from sklearn.model_selection import GridSearchCV, cross_val_score, KFold
     from sklearn.metrics import confusion_matrix, classification_report, make_scorer, accuracy_score
@@ -68,7 +62,7 @@ def load_data(median_income_in, population_in, longitude_in, latitude_in):
     housevalues = housing[target_to_predict]
     # print(housevalues)
     
-    scalerX = preprocessing.StandardScaler()
+    scalerX = StandardScaler()
     housing_attributes = scalerX.fit_transform(housing_attributes)
     # print(housing_attributes)
     
@@ -135,4 +129,10 @@ st.write(data)
 # Run Grid search to find best estimators
 # dtr_clf.best_params_
 
-
+# import matplotlib.pyplot as plt
+#     from sklearn import tree, neighbors, preprocessing, linear_model, svm, naive_bayes, linear_model
+#     from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
+#     from sklearn.linear_model import LinearRegression
+#     from sklearn.model_selection import cross_validate, train_test_split,cross_val_score
+#     from sklearn.svm import SVR
+#     from sklearn.tree import DecisionTreeRegressor
