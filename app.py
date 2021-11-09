@@ -7,10 +7,10 @@ Testing1
 """
 
 import streamlit as st
-longitude_in = -122
-latitude_in = 35
-population_in = 3000
-median_income_in = 4.5
+longitude_in = 0
+latitude_in = 0
+population_in = 0
+median_income_in = 0
 
 
 st.title("Eric Holland First Draft of App")
