@@ -104,6 +104,6 @@ dtr_clf = RandomForestRegressor()
 dtr_clf.fit(housing_attributes, housevalues.values.ravel())
 # dtr_clf.best_params_
 
-predicted_home_value = str(round(dtr_clf.predict(inputs),2))
-
+predicted_home_value = dtr_clf.predict(inputs)
+predicted_home_value = float(predicted_home_value)
 print("The expected home value is: $",predicted_home_value,".")
