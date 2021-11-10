@@ -5,8 +5,12 @@ Testing1
 
 @author: hamzafarooq@ MABA CLASS
 """
-
 import streamlit as st
+import matplotlib
+from shapely.geometry import Point
+import matplotlib.pyplot as plt
+import plotly.express as px
+
 longitude_in = 0
 latitude_in = 0
 population_in = 0
@@ -21,7 +25,7 @@ st.markdown("The data is from a UCI repo on California housing prices that has w
 st.markdown("It uses random forest regression and grid search to fit then estimate inputs")
 st.markdown("The output is the predicted home value.")
 st.markdown("Im able to create it in Atom and Spyder but spent a lot of time getting it to work in streamlit.")
-st.markdown("Spyder, Atom, Git Desktop are working fine, I wasnt able to let the user choose their preferred model among SVR, RF, Linear")
+st.markdown("Spyder, Atom, Git Desktop are working fine, I wasnt able to let the user choose their preferred model among SVR, RF, Linear, etc.")
 
 median_income_in1 = st.number_input("Enter your immediate area's median income in USD:", max_value = 500000, min_value = 0)
 population_in1 = st.number_input("Enter your immediate area's population (max 6000):", max_value = 6000, min_value = 0)
@@ -82,6 +86,12 @@ def load_data(median_income_in, population_in, longitude_in, latitude_in):
 data = load_data(median_income_in, population_in, longitude_in, latitude_in)  
 st.markdown("Your estimated California Home value is: ")
 st.write(data)  
+
+# lonlat = pd.DataFrame(longitude_in, latitude_in)
+# lonlat
+# fig = px.scatter_geo(geometry)
+# fig.show()
+
 
 
 #end
