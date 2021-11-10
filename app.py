@@ -6,10 +6,6 @@ Testing1
 @author: hamzafarooq@ MABA CLASS
 """
 import streamlit as st
-import matplotlib
-from shapely.geometry import Point
-import matplotlib.pyplot as plt
-import plotly.express as px
 
 longitude_in = 0
 latitude_in = 0
