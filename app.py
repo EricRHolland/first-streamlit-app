@@ -16,7 +16,7 @@ median_income_in = 0
 st.title("Eric Holland First Draft of App")
 st.markdown("This is a demo ERIC app.")
 
-st.markdown("This app takes the population, median income, longitude and latitude and outputs a predicted house value.")
+st.markdown("My idea is to create an app that predicts real estate prices for the West Coast.")
 st.markdown("The data is from a UCI repo on California housing prices that has way more than 4 variables.")
 st.markdown("It uses random forest regression and grid search to fit then estimate inputs")
 st.markdown("The output is the predicted home value.")
@@ -34,7 +34,7 @@ latitude_in = int(latitude_in1)
 
 @st.cache
 def load_data(median_income_in, population_in, longitude_in, latitude_in):
-    
+
     import warnings
     warnings.filterwarnings('ignore')
     import pandas as pd
@@ -44,31 +44,31 @@ def load_data(median_income_in, population_in, longitude_in, latitude_in):
     housing = pd.read_csv(
         "https://raw.githubusercontent.com/EricRHolland/first-streamlit-app/main/housing.csv")
     housing = pd.DataFrame(housing)
-    
-    
+
+
     important_columns = ["longitude", "latitude","population","median_income"]
     target_to_predict = ["median_house_value"]
     newhouseframe = ["longitude", "latitude","population","median_income","median_house_value"]
     housing = housing.dropna()
-    
+
     housing = housing[newhouseframe]
     housing_attributes = housing[important_columns]
     housevalues = housing[target_to_predict]
-    
+
     scalerX = StandardScaler()
     housing_attributes = scalerX.fit_transform(housing_attributes)
-    
+
     inputs = np.array([longitude_in,latitude_in, population_in,median_income_in])
     inputs = inputs.reshape(1,-1)
     inputs = scalerX.transform(inputs)
-    
+
     dtr_clf = RandomForestRegressor()
     dtr_clf.fit(housing_attributes, housevalues.values.ravel())
-    
-    
+
+
     if median_income_in == 0 or population_in == 0 or longitude_in == 0 or latitude_in == 0:
         predicted_home_value = 0
-    else: 
+    else:
         predicted_home_value = dtr_clf.predict(inputs)
         predicted_home_value = float(predicted_home_value)
     return predicted_home_value
@@ -79,9 +79,9 @@ def load_data(median_income_in, population_in, longitude_in, latitude_in):
 #       Let's find out")
 
 
-data = load_data(median_income_in, population_in, longitude_in, latitude_in)  
+data = load_data(median_income_in, population_in, longitude_in, latitude_in)
 st.markdown("Your estimated California Home value is: ")
-st.write(data)  
+st.write(data)
 
 # lonlat = pd.DataFrame(longitude_in, latitude_in)
 # lonlat
