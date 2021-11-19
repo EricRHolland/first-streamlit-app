@@ -1,6 +1,6 @@
 ,,keeps numbers between 0 and 1,,
 ,minmax,minmax,nah,nah
-,expensive vs not,popular vs not,,
+,expensive vs not,4,,
 store,sell price,rolling mean30,onehot department,onehot  category
 1,,,,
 1,,,,
