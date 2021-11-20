@@ -96,10 +96,10 @@ from selenium import webdriver
 import time
 
 # default path to file to store data
-path_to_file = "C:/Users/EricH/MachineLearning/try2/reviews.csv"
+path_to_file = "C:/Users/EricH/MachineLearning/try2/reviews3.csv"
 
 # default number of scraped pages
-num_page = 10
+num_page = 5
 
 # default tripadvisor website of restaurant
 url = "https://www.tripadvisor.com/Restaurant_Review-g60763-d802686-Reviews-Hard_Rock_Cafe-New_York_City_New_York.html"
@@ -132,7 +132,7 @@ for i in range(0, num_page):
         title = container[j].find_element_by_xpath(".//span[@class='noQuotes']").text
         date = container[j].find_element_by_xpath(".//span[contains(@class, 'ratingDate')]").get_attribute("title")
         rating = container[j].find_element_by_xpath(".//span[contains(@class, 'ui_bubble_rating bubble_')]").get_attribute("class").split("_")[3]
-        review = container[j].find_element_by_xpath(".//p[@class='partial_entry']").text.replace(" ")
+        review = container[j].find_element_by_xpath(".//p[@class='partial_entry']").text.replace("\n", " ")
 
         csvWriter.writerow([date, rating, title, review]) 
 
