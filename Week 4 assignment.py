@@ -63,7 +63,6 @@ def trip_review_scraper(url_originale):
         
         titles=[]
         names=[]
-        author_loc=[]
         date=[]
         contenuto=[]
         stars=[]
