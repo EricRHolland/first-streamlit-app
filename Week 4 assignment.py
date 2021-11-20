@@ -67,7 +67,7 @@ def trip_review_scraper(url_originale):
         
         for p in range(0,len(link_2light)):
             
-            page = urllib.request.urlopen('https://www.tripadvisor.it/'+str(link_2light[p]))
+            page = urllib.request.urlopen('https://www.tripadvisor.com/'+str(link_2light[p]))
             time.sleep(uniform(3,7))
             soup = BeautifulSoup(page, 'html.parser')
             
@@ -90,6 +90,9 @@ def trip_review_scraper(url_originale):
         trip.append(recensione)
        # trip_json.append(alfa)
     return(trip,trip_json)
+
+
+trip_review_scraper('https://www.tripadvisor.com/Hotel_Review-g187323-d638834-Reviews-Hotel_Berlin_Berlin-Berlin.html')
 
 url_tripadvisor='https://www.tripadvisor.com/Hotel_Review-g187323-d638834-Reviews-Hotel_Berlin_Berlin-Berlin.html'
 tripadvisor_review,review_json=trip_review_scraper(url_tripadvisor)
