@@ -81,7 +81,6 @@ def trip_review_scraper(url_originale):
               
             
             names.append(soup.find('span',{'class':'expand_inline scrname'}).text)  #author name
-            author_loc.append(soup.find('span',{'class':'expand_inline userLocation'}).text) #author location
             
             date.append(soup.find('span',{"class": "ratingDate relativeDate"}).text) #review date
 
@@ -89,7 +88,7 @@ def trip_review_scraper(url_originale):
             stars.append(int(alfa['reviewRating']['ratingValue'])) #rating
             titles.append(alfa['name']) #review title
             
-        recensione=pd.DataFrame({'name':names,'author Location': author_loc, 'title':titles, 'date':date, 'rating':stars, 'text':contenuto})
+        recensione=pd.DataFrame({'name':names, 'title':titles, 'date':date, 'rating':stars, 'text':contenuto})
         
         trip.append(recensione)
        # trip_json.append(alfa)
