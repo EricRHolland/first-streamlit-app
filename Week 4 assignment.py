@@ -1,4 +1,10 @@
+import os
+os.chdir(r'C:\Users\EricH\MachineLearning\try2')
 import pandas as pd
+
+import datetime
+import pickle
+import json
 
 def trip_review_scraper(url_originale):
     import urllib 
