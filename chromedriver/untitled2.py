@@ -11,7 +11,7 @@ from selenium import webdriver
 import time
 
 # default path to file to store data
-path_to_file = "C:/Users/EricH/MachineLearning/try2/chromedriver"
+path_to_file = "C:/Users/EricH/MachineLearning/try2/chromedriver/reviews.csv"
 
 # default number of scraped pages
 num_page = 10
