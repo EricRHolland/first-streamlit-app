@@ -23,9 +23,13 @@ st.markdown("This app shows a summary of each hotel?")
 
 text = st.text_input("Enter your requirements or suggestions on where you want to stay:")
 
-# new preprocessing file will havec the first run, then after that this hotel file will reference the first run
-# but wont actually store the data
+#New preprocessing file will havec the first run, then after that this hotel file will reference the first run
+#but wont actually store the data
+#instead of how to do it,actually if you do this and do the 2.3.1 if most updated version of spacy
+#need to explain what deploying means and how it works with the corpus, was really helpful understanding how it gets encoded
+#walk through pkl dump and load and successfull st.markdown call
 
+# this worked the most with the corpus and 
 df = pd.read_csv("C:/Users/EricH/MachineLearning/try2/Assignment3/sydneyhotels.csv")
 
 dfnew = df['review_body'][0]
