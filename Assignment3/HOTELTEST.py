@@ -9,10 +9,6 @@ import streamlit as st
 import pandas as pd
 
 
-longitude_in = 0
-latitude_in = 0
-population_in = 0
-median_income_in = 0
 
 
 st.title("Eric Holland First Draft of App")
