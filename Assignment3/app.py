@@ -3,9 +3,12 @@
 """
 
 
-@author: Trent Hannack
-"""
+@author: Eric Holland
+Office hours 6:15pm Tuesday 11/30
+Try to use pkl.load, otherwise get a working version and comment out
 
+"""
+import streamlit as st
 import spacy
 from spacy.lang.en.stop_words import STOP_WORDS
 from string import punctuation
@@ -18,8 +21,6 @@ from spacy import displacy
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 import matplotlib.pyplot as plt
 
-st.title("MABA 6490 Assignment 4")
-
 stopwords=list(STOP_WORDS)
 from string import punctuation
 punctuation=punctuation+ '\n'
@@ -31,32 +32,26 @@ import pickle as pkl
 import os
 
 embedder = SentenceTransformer('all-MiniLM-L6-v2')
-  
-df = pd.read_csv('Hotel New York Combined.csv')
+model = SentenceTransformer('all-MiniLM-L6-v2')
+df = pd.read_csv('C:/Users/EricH/MachineLearning/try2/Assignment3/sydneyhotels.csv')
 
-df['hotel_name'].value_counts()
-df['hotel_name'].drop_duplicates()
+df['hotelName'].value_counts()
+df['hotelName'].drop_duplicates()
+df_combined = df.sort_values(['hotelName']).groupby('hotelName', sort=False).review_body.apply(''.join).reset_index(name='all_review')
 
-df_combined = df.sort_values(['hotel_name']).groupby('hotel_name', sort=False).review_body.apply(''.join).reset_index(name='all_review')
-
+# re combines and puts everything in lower case
 import re
-
 df_combined['all_review'] = df_combined['all_review'].apply(lambda x: re.sub('[^a-zA-z0-9\s]','',x))
-
 def lower_case(input_str):
     input_str = input_str.lower()
     return input_str
 
 df_combined['all_review']= df_combined['all_review'].apply(lambda x: lower_case(x))
-
 df = df_combined
-
 df_sentences = df_combined.set_index("all_review")
-
-df_sentences = df_sentences["hotel_name"].to_dict()
+df_sentences = df_sentences["hotelName"].to_dict()
 df_sentences_list = list(df_sentences.keys())
 len(df_sentences_list)
-
 list(df_sentences.keys())[:5]
 
 import pandas as pd
@@ -65,20 +60,20 @@ from sentence_transformers import SentenceTransformer, util
 
 df_sentences_list = [str(d) for d in tqdm(df_sentences_list)]
 
+# gives an encoding of the full concatenated list of corpus
 corpus = df_sentences_list
 corpus_embeddings = embedder.encode(corpus,show_progress_bar=True)
-
-corpus_embeddings[0]
-
 model = SentenceTransformer('all-MiniLM-L6-v2')
 paraphrases = util.paraphrase_mining(model, corpus)
 
-#queries = ['Hotel close to Central Park',
-#           'Hotel with breakfast'
-#           ]
+queries = ['Hotel close to Opera House',
+          'Hotel with breakfast'
+          ]
 
 # Query sentences:
-queries = input('What kind of hotel are you looking for?')
+queries = []
+inputquestion =input('What kind of hotel are you looking for?') 
+queries.append(inputquestion)
 query_embeddings = embedder.encode(queries,show_progress_bar=True)
 
 from sentence_transformers import SentenceTransformer, util
@@ -96,6 +91,7 @@ def plot_cloud(wordcloud):
     plt.axis("off");
 
 # Find the closest 5 sentences of the corpus for each query sentence based on cosine similarity
+# Word cloud generates correctly
 top_k = min(5, len(corpus))
 for query in queries:
     query_embedding = embedder.encode(query, convert_to_tensor=True)
@@ -111,8 +107,8 @@ for query in queries:
     for score, idx in zip(top_results[0], top_results[1]):
         print("(Score: {:.4f})".format(score))
         row_dict = df.loc[df['all_review']== corpus[idx]]
-        print("paper_id:  " , row_dict['hotel_name'] , "\n")
-        wordcloud = WordCloud(width= 3000, height = 2000, random_state=1, background_color='salmon', colormap='Pastel1', collocations=False, stopwords = STOPWORDS).generate(str(corpus[idx]))
+        print("paper_id:  " , row_dict['hotelName'] , "\n")
+        wordcloud = WordCloud(width= 3000, height = 2000, random_state=30, background_color='white', colormap='Pastel1', collocations=False, stopwords = STOPWORDS).generate(str(corpus[idx]))
         plot_cloud(wordcloud)
         plt.imshow(wordcloud, interpolation='bilinear')
         plt.axis("off")
