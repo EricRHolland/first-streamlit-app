@@ -21,7 +21,6 @@ from sklearn.metrics import confusion_matrix, classification_report,make_scorer,
 from sklearn.metrics import precision_score, recall_score, f1_score
 from sklearn.preprocessing import OrdinalEncoder, LabelEncoder
 import matplotlib.pyplot as plt
-import scikitplot as skplt
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestRegressor
 import os
