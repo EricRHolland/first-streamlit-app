@@ -7,6 +7,8 @@ Testing1
 """
 import streamlit as st
 from functionfile import *
+import matplotlib
+from matplotlib import pyplot as plt
 longitude_in = 0
 latitude_in = 0
 population_in = 0
