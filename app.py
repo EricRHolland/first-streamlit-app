@@ -23,6 +23,9 @@ st.markdown("The output is the predicted home value.")
 st.markdown("Im able to create it in Atom and Spyder but spent a lot of time getting it to work in streamlit.")
 st.markdown("Spyder, Atom, Git Desktop are working fine, I wasnt able to let the user choose their preferred model among SVR, RF, Linear, etc.")
 
+
+tryingtofunctioncall()
+
 median_income_in1 = st.number_input("Enter your immediate area's median income in USD:", max_value = 500000, min_value = 0)
 population_in1 = st.number_input("Enter your immediate area's population (max 6000):", max_value = 6000, min_value = 0)
 longitude_in1 = st.number_input("Enter your district longitude betweeen -114 and -125:", min_value = -125)
