@@ -6,7 +6,7 @@ Testing1
 @author: hamzafarooq@ MABA CLASS
 """
 import streamlit as st
-
+from functionfile import *
 longitude_in = 0
 latitude_in = 0
 population_in = 0
