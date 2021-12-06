@@ -14,7 +14,7 @@ from sklearn.model_selection import cross_validate, train_test_split
 import numpy as np
 from sklearn.svm import SVR
 from sklearn.tree import DecisionTreeRegressor
-from sklearn.model_selection import GridSearchCV, cross_val_score
+from sklearn.model_selection import GridSearchCV, cross_val_score, KFold
 import pandas as pd
 
 from sklearn.metrics import confusion_matrix, classification_report,make_scorer, accuracy_score
@@ -25,10 +25,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestRegressor
 import os
 
-
-filepath = 'C:/Users/EricH/MachineLearning/try2/housing.csv'
-
-df = pd.read_csv(filepath)
+df = pd.read_csv('C:/Users/EricH/MachineLearning/try2/housing.csv')
 housing = df
 df.head()
 
