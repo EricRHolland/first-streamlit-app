@@ -5,6 +5,9 @@ Created on Sun Dec  5 16:25:48 2021
 @author: EricH
 """
 
+
+
+
 # Import modules
 import streamlit as st
 from sklearn import tree, neighbors, preprocessing, linear_model, svm,naive_bayes
@@ -52,8 +55,6 @@ svr = svm.SVR()
 
 #decision tree regression instead of classifier
 
-dtr_grid = {'max_depth': list(range(3,41))}
-
 knnr_grid= {'n_neighbors':list(range(3,41)),
             'weights':["uniform", "distance"]}
 
@@ -61,7 +62,7 @@ svr_grid= [{'kernel': ['rbf'], 'gamma': [.0001,.001,.01,.1],
 'C': [.1,1,10,100,1000]},
 {'kernel': ['linear'], 'C': [.1,1,10,100,1000]}]
 
-rfr_grid= {'max_depth': list(range(4,50))}
+rfr_grid= {'max_depth': list(range(4,31))}
 
 
 # CROSS VALIDATION define inner and outer loops
@@ -70,31 +71,25 @@ outer_cv = KFold(n_splits = 4, shuffle = True, random_state=50)
 
 
 #Use grid search to train the models well.
-dtr_clf5 = GridSearchCV(estimator=dtr, param_grid = dtr_grid, cv=inner_cv)
 rfr_clf5 = GridSearchCV(estimator=rfr, param_grid = rfr_grid, cv=inner_cv)
 knnr_clf5 = GridSearchCV(estimator=knnr, param_grid = knnr_grid, cv=inner_cv)
 svr_clf5 = GridSearchCV(estimator=svr, param_grid = svr_grid, cv=inner_cv)
 
-dtr_score5 = cross_val_score(dtr_clf5, X=X, y=Y, cv=outer_cv)
 rfr_score5 = cross_val_score(rfr_clf5, X=X, y=Y, cv=outer_cv)
 knnr_score5 = cross_val_score(knnr_clf5, X=X, y=Y, cv=outer_cv)
 svr_score5 = cross_val_score(svr_clf5, X=X, y=Y, cv=outer_cv)
 
-print(dtr_score5.mean())
+
 print(rfr_score5.mean())
 print(knnr_score5.mean())
 print(svr_score5.mean())
 
-dtr_clf5_fitted = dtr_clf5.fit(X,Y)
+
 rfr_clf5_fitted = rfr_clf5.fit(X,Y)
 knnr_clf5_fitted = knnr_clf5.fit(X,Y)
 svr_clf5_fitted = svr_clf5.fit(X,Y)
 
 
-
-
-def dtr_fit(input):
-    return print(dtr_clf5_fitted.predict(input))
 
 def rfr_fit(input):
     return print(rfr_clf5_fitted.predict(input))
@@ -167,11 +162,3 @@ def tryingtofunctioncall():
 #                        refit=True)
 # Run Grid search to find best estimators
 # dtr_clf.best_params_
-
-# import matplotlib.pyplot as plt
-#     from sklearn import tree, neighbors, preprocessing, linear_model, svm, naive_bayes, linear_model
-#     from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
-#     from sklearn.linear_model import LinearRegression
-#     from sklearn.model_selection import cross_validate, train_test_split,cross_val_score
-#     from sklearn.svm import SVR
-#     from sklearn.tree import DecisionTreeRegressor
